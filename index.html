@@ -19,9 +19,9 @@
     <nav class="hidden lg:flex items-center gap-7">
       <a href="#shop" class="nav-link">Shop</a>
       <a href="#new-arrivals" class="nav-link">New Arrivals</a>
-      <a href="#best-sellers" class="nav-link">Best Sellers</a>
-      <a href="#" onclick="openWigFinder(); return false;" class="nav-link">Wig Finder</a>
-      <a href="#why-bella" class="nav-link">Why Bella</a>
+      
+      
+      
       <a href="#visit" class="nav-link">Visit Us</a>
     </nav>
 
@@ -99,7 +99,7 @@
   </div>
 
   <div class="container-lux">
-    <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-5 gap-4"></div>
     <div id="filter-empty-state" class="hidden text-center py-16" style="color: var(--text-muted);">
       No wigs match those filters. <button onclick="document.getElementById('filter-clear-btn').click()" class="underline" style="color: var(--champagne);">Clear filters</button>
     </div>
@@ -157,11 +157,40 @@
       <p class="section-eyebrow">Visit Bella Wigs</p>
       <h2 class="section-title">The Stage After Rainbow, Ruiru</h2>
     </div>
-    <div class="location-card fade-up">
-      <p class="text-xs tracking-widest mb-2" style="color: var(--champagne);">VISIT BELLA WIGS</p>
-      <p class="font-display text-xl mb-1">The Stage after Rainbow</p>
-      <p class="text-sm mb-6" style="color: rgba(255,255,255,.7);">Ruiru, Thika Road</p>
-      <a href="https://maps.app.goo.gl/YOUR_REAL_LINK_HERE" target="_blank" class="btn btn-accent">Get Directions</a>
+    <div class="location-card fade-up" style="padding:0; overflow:hidden; background:#292624;">
+      <div style="width:100%; height:360px;">
+        <iframe
+          src="https://www.google.com/maps?q=The+Stage+After+Rainbow,+Ruiru,+Kenya&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0; display:block;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div style="padding:32px; text-align:center;">
+        <p class="text-xs tracking-widest mb-2" style="color:var(--champagne);">
+          VISIT BELLA WIGS
+        </p>
+
+        <p class="font-display text-xl mb-1" style="color:var(--ivory);">
+          The Stage after Rainbow
+        </p>
+
+        <p class="text-sm mb-6" style="color:rgba(255,255,255,.7);">
+          Ruiru, Thika Road
+        </p>
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=The+Stage+After+Rainbow,+Ruiru,+Kenya"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-accent">
+          GET DIRECTIONS
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -184,7 +213,7 @@
     </div>
     <div>
       <p class="footer-heading">Help</p>
-      <a href="#" onclick="openWigFinder(); return false;" class="footer-link">Wig Finder</a>
+      
       <a href="#" class="footer-link">Size Guide</a>
       <a href="#" class="footer-link">Delivery</a>
       <a href="#" class="footer-link">FAQ</a>
@@ -242,4 +271,7 @@
 <script src="js/showroom.js"></script>
 </body>
 </html>
+
+
+
 

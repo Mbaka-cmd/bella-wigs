@@ -36,48 +36,309 @@ function matchesLength(p) {
   return true;
 }
 
+const SEARCH_SYNONYMS = {
+  "wig": [
+    "wig", "wigs", "unit", "units", "hair", "human hair",
+    "lace", "frontal", "closure", "extension"
+  ],
+
+  "maintenance": [
+    "maintenance", "maintain", "care", "wig care", "hair care",
+    "aftercare", "upkeep", "repair", "refresh", "restore"
+  ],
+
+  "kit": [
+    "kit", "set", "bundle", "essentials", "tools", "accessories"
+  ],
+
+  "wig maintenance kit": [
+    "maintenance", "care", "aftercare", "wig care", "hair care",
+    "lace care", "tools", "accessories", "adhesive", "glue",
+    "holding spray", "melting spray", "wax", "hot comb", "flat iron"
+  ],
+
+  "lace": [
+    "lace", "lace front", "frontal", "lace melting",
+    "melting spray", "lace adhesive", "lace glue", "lace bond"
+  ],
+
+  "glue": [
+    "glue", "adhesive", "bond", "holding spray",
+    "lace adhesive", "hair adhesive"
+  ],
+
+  "styling": [
+    "styling", "style", "styler", "flat iron", "hot comb",
+    "curl", "curler", "wax", "brush", "comb"
+  ],
+
+  "flat iron": [
+    "flat iron", "straightener", "hair straightener",
+    "styling tool", "hot tool"
+  ],
+
+  "hair products": [
+    "hair", "oil", "shampoo", "conditioner", "treatment",
+    "serum", "spray", "wax", "care"
+  ],
+
+  "oil": [
+    "oil", "hair oil", "hair care", "treatment", "serum"
+  ],
+
+  "skincare": [
+    "skin", "skincare", "face", "serum", "moisturizer",
+    "sunscreen", "cleanser", "mask", "toner", "beauty"
+  ],
+
+  "skin care": [
+    "skin", "skincare", "face", "serum", "moisturizer",
+    "sunscreen", "cleanser", "mask", "toner", "beauty"
+  ],
+
+  "beauty": [
+    "beauty", "cosmetic", "cosmetics", "skin", "skincare",
+    "face", "serum", "moisturizer", "sunscreen"
+  ],
+
+  "curly": [
+    "curly", "curl", "curls", "kinky", "deep wave",
+    "water wave", "wavy", "texture"
+  ],
+
+  "straight": [
+    "straight", "sleek", "silky", "straight hair"
+  ],
+
+  "bob": [
+    "bob", "short", "closure fringe", "pixie"
+  ],
+
+  "pixie": [
+    "pixie", "short", "short hair", "short wig"
+  ],
+
+  "water wave": [
+    "water wave", "wavy", "wave", "waves"
+  ],
+
+  "body wave": [
+    "body wave", "wavy", "wave", "waves"
+  ],
+
+  "afro": [
+    "afro", "kinky", "kinky curly", "natural", "coily"
+  ],
+
+  "colored": [
+    "colored", "colour", "color", "blonde", "ginger",
+    "burgundy", "honey blonde", "ash blonde", "613", "highlight"
+  ]
+};
+
+function normalizeSearchText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getSearchTerms(query) {
+  const normalized = normalizeSearchText(query);
+
+  if (!normalized) return [];
+
+  const terms = new Set([normalized]);
+
+  Object.entries(SEARCH_SYNONYMS).forEach(([key, synonyms]) => {
+    const normalizedKey = normalizeSearchText(key);
+
+    if (
+      normalized === normalizedKey ||
+      normalized.includes(normalizedKey) ||
+      normalizedKey.includes(normalized)
+    ) {
+      synonyms.forEach(word => {
+        terms.add(normalizeSearchText(word));
+      });
+    }
+  });
+
+  normalized.split(" ").forEach(word => {
+    if (word.length < 2) return;
+
+    terms.add(word);
+
+    Object.entries(SEARCH_SYNONYMS).forEach(([key, synonyms]) => {
+      const normalizedKey = normalizeSearchText(key);
+
+      if (
+        normalizedKey === word ||
+        normalizedKey.includes(word) ||
+        word.includes(normalizedKey)
+      ) {
+        synonyms.forEach(term => {
+          terms.add(normalizeSearchText(term));
+        });
+      }
+    });
+  });
+
+  return [...terms].filter(Boolean);
+}
+
+function productSearchScore(product, query) {
+  const normalizedQuery = normalizeSearchText(query);
+
+  if (!normalizedQuery) return 0;
+
+  const searchableText = normalizeSearchText([
+    product.name,
+    product.category,
+    product.hair_type,
+    product.density,
+    product.lace,
+    product.length,
+    product.description,
+    ...(product.keywords || []),
+    ...(product.tags || [])
+  ].join(" "));
+
+  const terms = getSearchTerms(normalizedQuery);
+
+  let score = 0;
+
+  // Exact product-name match gets highest priority
+  if (normalizeSearchText(product.name).includes(normalizedQuery)) {
+    score += 100;
+  }
+
+  // Exact category match
+  if (normalizeSearchText(product.category).includes(normalizedQuery)) {
+    score += 60;
+  }
+
+  // Keyword/synonym matches
+  terms.forEach(term => {
+    if (!term) return;
+
+    if (searchableText.includes(term)) {
+      score += term.length >= 5 ? 12 : 7;
+    }
+  });
+
+  // Individual query words
+  normalizedQuery.split(" ").forEach(word => {
+    if (word.length < 2) return;
+
+    if (searchableText.includes(word)) {
+      score += 5;
+    }
+  });
+
+  return score;
+}
 function getFilteredProducts() {
   const term = searchTerm.trim().toLowerCase();
-  return PRODUCTS.filter(p => {
-    const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
-    const matchesSearch = !term ||
-      p.name.toLowerCase().includes(term) ||
-      p.category.toLowerCase().includes(term) ||
-      p.hair_type.toLowerCase().includes(term);
+
+  let results = PRODUCTS.filter(p => {
+    const matchesCategory =
+      activeCategory === 'all' ||
+      p.category === activeCategory;
+
     const matchesPrice = p.price <= priceMax;
-    return matchesCategory && matchesSearch && matchesPrice && matchesLength(p);
+
+    return matchesCategory &&
+           matchesPrice &&
+           matchesLength(p);
   });
+
+  if (!term) {
+    return results;
+  }
+
+  return results
+    .map(product => ({
+      product,
+      score: productSearchScore(product, term)
+    }))
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(item => item.product);
 }
 
 function productCardHtml(p) {
-  const waMessage = encodeURIComponent(`Hi Bella Wigs, I'm interested in the ${p.name} — KES ${p.price.toLocaleString()}. Is it available?`);
-  const badgeHtml = p.badge ? `<span class="badge badge-${p.badge}">${BADGE_LABELS[p.badge]}</span>` : '';
+  const waMessage = encodeURIComponent(
+    `Hi Bella Wigs, I'm interested in the ${p.name} — KES ${p.price.toLocaleString()}. Is it available?`
+  );
+
+  const badgeHtml = p.badge
+    ? `<span class="badge badge-${p.badge}">${BADGE_LABELS[p.badge] || p.badge}</span>`
+    : '';
+
+  const imageSrc = `${p.imagePath || IMG_PATH}${p.image}`;
+
   return `
-    <div class="product-card fade-up">
+    <article class="product-card fade-up">
+
       ${badgeHtml}
+
       <div class="product-card-image">
-        <img src="${IMG_PATH}${p.image}" alt="${p.name}" loading="lazy">
+        <img
+          src="${imageSrc}"
+          alt="${p.name}"
+          loading="lazy"
+          decoding="async"
+          class="product-image"
+        >
       </div>
+
       <div class="product-card-body">
-        <p class="product-card-cat">${p.category}</p>
-        <p class="product-card-name">${p.name}</p>
+
+        <p class="product-card-cat">${p.category || ''}</p>
+
+        <h3 class="product-card-name">${p.name || 'Bella Wigs Collection'}</h3>
+
         <div class="product-card-chips">
-          <span class="product-card-chip">${p.hair_type}</span>
-          <span class="product-card-chip">${p.density} Density</span>
-          <span class="product-card-chip">${p.length}"</span>
+          ${p.hair_type ? `<span class="product-card-chip">${p.hair_type}</span>` : ''}
+          ${p.density ? `<span class="product-card-chip">${p.density} Density</span>` : ''}
+          ${p.length ? `<span class="product-card-chip">${p.length}"</span>` : ''}
         </div>
+
         <div class="product-card-footer">
+
           <div class="product-card-price-row">
-            <span class="product-card-price">KES ${p.price.toLocaleString()}</span>
-            <button data-id="${p.id}" class="add-to-cart-btn btn btn-primary btn-sm">Add to Bag</button>
+            <span class="product-card-price">
+              KES ${Number(p.price || 0).toLocaleString()}
+            </span>
+
+            <button
+              type="button"
+              data-id="${p.id}"
+              class="add-to-cart-btn btn btn-primary btn-sm"
+            >
+              Add to Bag
+            </button>
           </div>
-          <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}" target="_blank" class="btn btn-whatsapp btn-sm">Ask on WhatsApp</a>
+
+          <a
+            href="https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-whatsapp btn-sm"
+          >
+            Ask on WhatsApp
+          </a>
+
         </div>
       </div>
-    </div>
+
+    </article>
   `;
 }
-
 function renderProducts() {
   const filtered = getFilteredProducts();
   const grid = document.getElementById('product-grid');
@@ -95,6 +356,26 @@ function renderProducts() {
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', () => addToCart(btn.dataset.id, btn));
   });
+
+  document.querySelectorAll('.product-image').forEach(img => {
+    img.addEventListener('error', () => {
+      img.classList.add('image-load-failed');
+
+      const fallback = document.createElement('div');
+      fallback.className = 'product-image-fallback';
+
+      fallback.innerHTML = `
+        <div class="product-image-fallback-inner">
+          <div class="product-image-fallback-mark">B</div>
+          <div class="product-image-fallback-title">BELLA WIGS</div>
+          <div class="product-image-fallback-subtitle">Luxury Hair Collection</div>
+        </div>
+      `;
+
+      img.replaceWith(fallback);
+    }, { once: true });
+  });
+
   observeFadeUps();
 }
 
@@ -239,3 +520,14 @@ renderCart();
 initFilterBar();
 initStickyHeader();
 observeFadeUps();
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+﻿# manual snapshot/backup files (git history replaces these)
+*.backup*
+*.before-*
+*.BEFORE-*
+*.bak
+*.final-backup*
+*.final-before-*
+*.corrupted-before-*
+
+# generated audit/report artifacts
+*.csv
+*.txt
+!README.txt
