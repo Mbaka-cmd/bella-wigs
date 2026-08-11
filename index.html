@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bella Wigs — Luxury Human Hair Wigs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #FFF8FA; }
+        .font-display { font-family: 'Playfair Display', serif; }
+    </style>
+  <link rel="stylesheet" href="css/showroom.css">
+</head>
+<body class="text-[#333333]">
+
+    <header class="bg-white border-b border-[#F8D7E6] sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+            <h1 class="font-display text-2xl">Bella <span class="text-[#C9A227]">Wigs</span></h1>
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/254748077609" target="_blank" class="bg-[#F8D7E6] text-[#333333] px-5 py-2 rounded-full text-sm font-medium hover:bg-[#C9A227] hover:text-white transition">💬 Chat on WhatsApp</a>
+                <button onclick="openWigFinder()" class="bg-[#333333] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#C9A227] transition">&#10024; AI Wig Finder</button>
+                <button id="cart-btn" class="relative bg-[#333333] text-white w-11 h-11 rounded-full flex items-center justify-center hover:bg-[#C9A227] transition">🛒<span id="cart-count" class="hidden absolute -top-1 -right-1 bg-[#C9A227] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span></button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative py-40 text-center border-b border-[#F8D7E6] min-h-[500px] overflow-hidden">
+        <div class="absolute inset-0" style="background-image: url('assets/images/banner.png'); background-size: cover; background-position: top center; filter: blur(9px);"></div>
+        <div class="absolute inset-0 bg-white/5"></div>
+        <div class="relative z-10">
+            <h2 class="font-display text-6xl text-[#FFFFFF] mb-4">Luxury Human Hair Wigs<br>for Every Queen</h2>
+            <p class="text-[#FFFFFF] max-w-2xl mx-auto text-lg">Shop premium wigs from the comfort of your home with secure ordering and nationwide delivery.</p>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 py-12">
+        
+
+<div id="filter-empty-state" class="hidden max-w-6xl mx-auto px-4 py-12 text-center text-gray-400">
+  No wigs match those filters. <button onclick="document.getElementById('filter-clear-btn').click()" class="text-[#C9A227] underline">Clear filters</button>
+</div>
+<div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </main>
+
+    <section class="max-w-6xl mx-auto px-6 py-12 border-t border-[#F8D7E6]">
+        <h3 class="font-display text-2xl mb-2">Visit Our Shop</h3>
+        <p class="text-gray-500 mb-6">The Stage after Rainbow, Ruiru, Thika Road</p>
+        <div class="rounded-2xl overflow-hidden border border-[#F8D7E6]">
+            <div class="max-w-2xl mx-auto bg-[#333333] rounded-2xl p-8 text-center text-white">
+  <p class="text-xs tracking-widest text-[#C9A227] mb-2">VISIT BELLA WIGS</p>
+  <p class="font-display text-xl mb-1">The Stage after Rainbow</p>
+  <p class="text-sm text-white/70 mb-6">Ruiru, Thika Road</p>
+  <a href="https://maps.app.goo.gl/YOUR_REAL_LINK_HERE" target="_blank" class="inline-block bg-[#C9A227] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-[#333333] transition">GET DIRECTIONS</a>
+</div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Rainbow+Ruiru+Resort,+Thika+Road,+Ruiru,+Kenya"
+           target="_blank"
+           class="inline-block mt-4 bg-[#333333] text-white px-6 py-3 rounded-full font-medium hover:bg-[#C9A227] transition">
+           Get Directions
+        </a>
+    </section>
+
+    <footer class="border-t border-[#F8D7E6] py-12">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+            <div>
+                <h4 class="font-display text-lg mb-3">Bella <span class="text-[#C9A227]">Wigs</span></h4>
+                <p class="text-gray-500 mb-2">4.9 <span class="text-[#C9A227]">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 200+ Reviews</p>
+                <p class="text-gray-500">VAT Reg. Business</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">Contact</h4>
+                <p class="text-gray-500 mb-2">&#128222; <a href="tel:+254748077609" class="hover:text-[#C9A227]">+254 748 077 609</a></p>
+                <p class="text-gray-500 mb-2">&#9993; <a href="mailto:hello@bellawigs.co.ke" class="hover:text-[#C9A227]">hello@bellawigs.co.ke</a></p>
+                <p class="text-gray-500">&#128205; The Stage after Rainbow, Ruiru, Thika Road</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">Visit Us</h4>
+                <a href="https://wa.me/254748077609?text=Hi%2C%20I%27d%20like%20to%20book%20a%20wig%20fitting%20appointment" target="_blank" class="inline-block bg-[#333333] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#C9A227] transition">Book a Fitting</a>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-3">FAQ</h4>
+                <div class="space-y-2">
+                    <details class="text-gray-500"><summary class="cursor-pointer font-medium text-[#333333]">How do I know my size?</summary><p class="mt-1">Message us your head circumference on WhatsApp and we'll recommend the right cap size.</p></details>
+                    <details class="text-gray-500"><summary class="cursor-pointer font-medium text-[#333333]">Do you deliver nationwide?</summary><p class="mt-1">Yes, we deliver countrywide via courier, with same-day delivery in Nairobi and Ruiru.</p></details>
+                    <details class="text-gray-500"><summary class="cursor-pointer font-medium text-[#333333]">Can I pay via M-Pesa?</summary><p class="mt-1">Yes, M-Pesa and cash on delivery are both accepted — send your order on WhatsApp to arrange payment.</p></details>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-sm text-gray-400 mt-10 pt-6 border-t border-[#F8D7E6]">&copy; 2026 Bella Wigs. All rights reserved.</p>
+    </footer>
+
+    <div id="wigfinder-overlay" class="hidden fixed inset-0 bg-black/40 z-40 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-display text-2xl">AI Wig Finder</h3>
+                <button onclick="closeWigFinder()" class="text-gray-400 text-2xl leading-none">&times;</button>
+            </div>
+            <p class="text-gray-500 mb-6">What look do you want?</p>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="selectOccasion('Office')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Office</button>
+                <button onclick="selectOccasion('Wedding')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Wedding</button>
+                <button onclick="selectOccasion('Everyday')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Everyday</button>
+                <button onclick="selectOccasion('Church')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Church</button>
+                <button onclick="selectOccasion('Cancer Treatment')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Cancer Treatment</button>
+                <button onclick="selectOccasion('Fashion')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Fashion</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-overlay" class="hidden fixed inset-0 bg-black/30 z-20"></div>
+    <aside id="cart-drawer" class="hidden fixed top-0 right-0 h-full w-96 bg-white z-30 shadow-2xl flex flex-col">
+        <div class="flex items-center justify-between p-5 border-b border-[#F8D7E6]"><h3 class="font-display text-xl">Your Cart</h3><button id="cart-close" class="text-2xl text-gray-400">&times;</button></div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+        <div class="p-5 border-t border-[#F8D7E6]"><div class="flex justify-between mb-4 font-semibold"><span>Subtotal</span><span id="cart-subtotal">KES 0</span></div><button id="checkout-btn" class="w-full bg-[#333333] text-white py-3 rounded-full font-medium hover:bg-[#C9A227] transition">Checkout on WhatsApp</button></div>
+    </aside>
+
+    <a href="https://wa.me/254748077609?text=Hi!%20I%27d%20like%20to%20send%20a%20selfie%20to%20get%20a%20wig%20recommendation" target="_blank"
+       class="fixed bottom-6 right-6 z-50 bg-[#25D366] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
+       title="Send us a selfie for a wig recommendation">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16.001 2.667C8.637 2.667 2.667 8.637 2.667 16c0 2.462.664 4.77 1.822 6.755L2.667 29.333l6.756-1.774A13.29 13.29 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.365 2.667 16.001 2.667zm7.75 18.86c-.323.905-1.6 1.657-2.616 1.876-.696.148-1.605.266-4.667-1.001-3.917-1.623-6.437-5.598-6.634-5.858-.19-.26-1.596-2.125-1.596-4.055 0-1.93.995-2.877 1.35-3.271.322-.358.751-.451 1.001-.451.25 0 .5.003.719.014.23.011.539-.087.843.643.323.777 1.098 2.681 1.194 2.876.096.195.16.423.032.683-.128.26-.192.423-.383.65-.192.228-.403.508-.575.683-.192.195-.392.406-.168.797.223.39.994 1.64 2.135 2.657 1.468 1.31 2.706 1.717 3.096 1.911.39.195.618.163.847-.098.229-.26.978-1.14 1.238-1.532.26-.39.52-.325.878-.195.359.13 2.269 1.07 2.658 1.265.39.195.65.293.746.455.096.163.096.943-.227 1.849z"/></svg>
+    </a>
+
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+  <script src="js/showroom.js"></script>
+</body>
+</html>
+
+
+
+
