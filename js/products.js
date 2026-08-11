@@ -1,6 +1,5 @@
 ﻿// Product catalog for the static Bella Wigs site.
-// Images live in assets/images/ — filenames match the renamed seed_media files.
-// badge is a status slug, not display text: "best-seller" | "new" | "limited" | "low-stock" | null
+// Images reference the ACTUAL files in assets/images/ (no renamed set exists).
 const BADGE_LABELS = {
   "best-seller": "Best Seller",
   "new": "New",
@@ -9,17 +8,16 @@ const BADGE_LABELS = {
 };
 
 const PRODUCTS = [
-  { id: "1", name: "13x4 Lace Front Wig, 22\"", category: "Straight Wigs", hair_type: "Brazilian Remy", density: "180%", lace: "13x4 Lace Front", length: 22, price: 11000, image: "straight-13x4-lace-front.png", badge: "best-seller" },
-  { id: "2", name: "Glueless 13x4 HD Lace Front Wig", category: "Straight Wigs", hair_type: "100% Human Hair", density: "150%", lace: "13x4 HD Lace", length: 20, price: 10500, image: "straight-glueless-13x4.png", badge: null },
-  { id: "3", name: "Chic Bob Wig, Closure Fringe", category: "Bob Wigs", hair_type: "100% Human Hair", density: "150%", lace: "Closure", length: 12, price: 7000, image: "bob-closure-fringe.png", badge: null },
-  { id: "4", name: "Sleek Pixie Cut Wig", category: "Pixie Wigs", hair_type: "100% Human Hair", density: "130%", lace: "Fringe, No Lace", length: 8, price: 6500, image: "pixie-sleek-cut.png", badge: null },
-  { id: "5", name: "Peruvian Water Wave 20\"", category: "Water Wave Wigs", hair_type: "100% Human Hair", density: "180%", lace: "5x5 Closure, HD Lace", length: 20, price: 9500, image: "water-wave-peruvian-20.png", badge: "best-seller" },
-  { id: "6", name: "Balayage Body Wave Wig", category: "Water Wave Wigs", hair_type: "100% Human Hair", density: "150%", lace: "Lace Front", length: 18, price: 9800, image: "wave-balayage-body.png", badge: null },
-  { id: "7", name: "Wavy Curls Wig", category: "Water Wave Wigs", hair_type: "100% Human Hair", density: "150%", lace: "Closure", length: 20, price: 9200, image: "wave-curls-style.png", badge: null },
-  { id: "8", name: "Kinky Afro Curl Wig 16\"", category: "Afro Wigs", hair_type: "LDYESTIM Human Hair", density: "180%", lace: "Full Lace", length: 16, price: 8800, image: "afro-ldyestim-16.png", badge: "new" }
+  { id: "1", name: "13x4 Lace Front Wig, 22\"", category: "Straight Wigs", hair_type: "Brazilian Remy", density: "180%", lace: "13x4 Lace Front", length: 22, price: 11000, image: "13x4-lace-front.png", badge: "best-seller" },
+  { id: "2", name: "Glueless 13x4 HD Lace Front Wig", category: "Straight Wigs", hair_type: "100% Human Hair", density: "150%", lace: "13x4 HD Lace", length: 20, price: 10500, image: "glueless-13x4-hd.png", badge: null },
+  { id: "3", name: "Chic Bob Wig, Closure Fringe", category: "Bob Wigs", hair_type: "100% Human Hair", density: "150%", lace: "Closure", length: 12, price: 7000, image: "sdd_closure_fringe_bob_wig-1.png", badge: null },
+  { id: "4", name: "Sleek Pixie Cut Wig", category: "Pixie Wigs", hair_type: "100% Human Hair", density: "130%", lace: "Fringe, No Lace", length: 8, price: 6500, image: "hair_type___classy_boss_pixie_.png", badge: null },
+  { id: "5", name: "Peruvian Water Wave 20\"", category: "Water Wave Wigs", hair_type: "100% Human Hair", density: "180%", lace: "5x5 Closure, HD Lace", length: 20, price: 9500, image: "water-wave-wig.png", badge: "best-seller" },
+  { id: "6", name: "Balayage Body Wave Wig", category: "Water Wave Wigs", hair_type: "100% Human Hair", density: "150%", lace: "Lace Front", length: 18, price: 9800, image: "deep-wave-human.png", badge: null },
+  { id: "7", name: "Wavy Curls Wig", category: "Water Wave Wigs", hair_type: "100% Human Hair", density: "150%", lace: "Closure", length: 20, price: 9200, image: "brazilian_curly_wave_wig.png", badge: null },
+  { id: "8", name: "Kinky Afro Curl Wig 16\"", category: "Afro Wigs", hair_type: "LDYESTIM Human Hair", density: "180%", lace: "Full Lace", length: 16, price: 8800, image: "ldyestim_kinky_curly_lace_fron.png", badge: "new" }
 ];
 
-// Occasion -> category mapping for the AI Wig Finder
 const OCCASION_MAP = {
   "Office": "Straight Wigs",
   "Wedding": "Water Wave Wigs",
