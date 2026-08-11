@@ -1,131 +1,244 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Bella Wigs — Luxury Human Hair Wigs</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background: #FFF8FA; }
-        .font-display { font-family: 'Playfair Display', serif; }
-    </style>
-  <link rel="stylesheet" href="css/showroom.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Wigs — Luxury Human Hair Wigs in Kenya</title>
+<meta name="description" content="Premium human hair wigs for Kenyan women. Shop straight, bob, water wave and afro styles with nationwide delivery and M-Pesa payment. Visit our Ruiru store.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/luxury.css">
 </head>
-<body class="text-[#333333]">
+<body>
 
-    <header class="bg-white border-b border-[#F8D7E6] sticky top-0 z-10">
-        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-            <h1 class="font-display text-2xl">Bella <span class="text-[#C9A227]">Wigs</span></h1>
-            <div class="flex items-center gap-3">
-                <a href="https://wa.me/254748077609" target="_blank" class="bg-[#F8D7E6] text-[#333333] px-5 py-2 rounded-full text-sm font-medium hover:bg-[#C9A227] hover:text-white transition">💬 Chat on WhatsApp</a>
-                <button onclick="openWigFinder()" class="bg-[#333333] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#C9A227] transition">&#10024; AI Wig Finder</button>
-                <button id="cart-btn" class="relative bg-[#333333] text-white w-11 h-11 rounded-full flex items-center justify-center hover:bg-[#C9A227] transition">🛒<span id="cart-count" class="hidden absolute -top-1 -right-1 bg-[#C9A227] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span></button>
-            </div>
-        </div>
-    </header>
+<header id="site-header" class="site-header">
+  <div class="container-lux flex items-center justify-between gap-4">
+    <a href="#" class="brand-mark">Bella <span class="accent">Wigs</span></a>
 
-    <section class="relative py-40 text-center border-b border-[#F8D7E6] min-h-[500px] overflow-hidden">
-        <div class="absolute inset-0" style="background-image: url('assets/images/banner.png'); background-size: cover; background-position: top center; filter: blur(9px);"></div>
-        <div class="absolute inset-0 bg-white/5"></div>
-        <div class="relative z-10">
-            <h2 class="font-display text-6xl text-[#FFFFFF] mb-4">Luxury Human Hair Wigs<br>for Every Queen</h2>
-            <p class="text-[#FFFFFF] max-w-2xl mx-auto text-lg">Shop premium wigs from the comfort of your home with secure ordering and nationwide delivery.</p>
-        </div>
-    </section>
+    <nav class="hidden lg:flex items-center gap-7">
+      <a href="#shop" class="nav-link">Shop</a>
+      <a href="#new-arrivals" class="nav-link">New Arrivals</a>
+      <a href="#best-sellers" class="nav-link">Best Sellers</a>
+      <a href="#" onclick="openWigFinder(); return false;" class="nav-link">Wig Finder</a>
+      <a href="#why-bella" class="nav-link">Why Bella</a>
+      <a href="#visit" class="nav-link">Visit Us</a>
+    </nav>
 
-    <section class="max-w-6xl mx-auto px-6 py-12">
-        
-
-<div id="filter-empty-state" class="hidden max-w-6xl mx-auto px-4 py-12 text-center text-gray-400">
-  No wigs match those filters. <button onclick="document.getElementById('filter-clear-btn').click()" class="text-[#C9A227] underline">Clear filters</button>
-</div>
-<div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-    </main>
-
-    <section class="max-w-6xl mx-auto px-6 py-12 border-t border-[#F8D7E6]">
-        <h3 class="font-display text-2xl mb-2">Visit Our Shop</h3>
-        <p class="text-gray-500 mb-6">The Stage after Rainbow, Ruiru, Thika Road</p>
-        <div class="rounded-2xl overflow-hidden border border-[#F8D7E6]">
-            <div class="max-w-2xl mx-auto bg-[#333333] rounded-2xl p-8 text-center text-white">
-  <p class="text-xs tracking-widest text-[#C9A227] mb-2">VISIT BELLA WIGS</p>
-  <p class="font-display text-xl mb-1">The Stage after Rainbow</p>
-  <p class="text-sm text-white/70 mb-6">Ruiru, Thika Road</p>
-  <a href="https://maps.app.goo.gl/YOUR_REAL_LINK_HERE" target="_blank" class="inline-block bg-[#C9A227] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-[#333333] transition">GET DIRECTIONS</a>
-</div>
-        </div>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Rainbow+Ruiru+Resort,+Thika+Road,+Ruiru,+Kenya"
-           target="_blank"
-           class="inline-block mt-4 bg-[#333333] text-white px-6 py-3 rounded-full font-medium hover:bg-[#C9A227] transition">
-           Get Directions
-        </a>
-    </section>
-
-    <footer class="border-t border-[#F8D7E6] py-12">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
-            <div>
-                <h4 class="font-display text-lg mb-3">Bella <span class="text-[#C9A227]">Wigs</span></h4>
-                <p class="text-gray-500 mb-2">4.9 <span class="text-[#C9A227]">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 200+ Reviews</p>
-                <p class="text-gray-500">VAT Reg. Business</p>
-            </div>
-            <div>
-                <h4 class="font-semibold mb-3">Contact</h4>
-                <p class="text-gray-500 mb-2">&#128222; <a href="tel:+254748077609" class="hover:text-[#C9A227]">+254 748 077 609</a></p>
-                <p class="text-gray-500 mb-2">&#9993; <a href="mailto:hello@bellawigs.co.ke" class="hover:text-[#C9A227]">hello@bellawigs.co.ke</a></p>
-                <p class="text-gray-500">&#128205; The Stage after Rainbow, Ruiru, Thika Road</p>
-            </div>
-            <div>
-                <h4 class="font-semibold mb-3">Visit Us</h4>
-                <a href="https://wa.me/254748077609?text=Hi%2C%20I%27d%20like%20to%20book%20a%20wig%20fitting%20appointment" target="_blank" class="inline-block bg-[#333333] text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-[#C9A227] transition">Book a Fitting</a>
-            </div>
-            <div>
-                <h4 class="font-semibold mb-3">FAQ</h4>
-                <div class="space-y-2">
-                    <details class="text-gray-500"><summary class="cursor-pointer font-medium text-[#333333]">How do I know my size?</summary><p class="mt-1">Message us your head circumference on WhatsApp and we'll recommend the right cap size.</p></details>
-                    <details class="text-gray-500"><summary class="cursor-pointer font-medium text-[#333333]">Do you deliver nationwide?</summary><p class="mt-1">Yes, we deliver countrywide via courier, with same-day delivery in Nairobi and Ruiru.</p></details>
-                    <details class="text-gray-500"><summary class="cursor-pointer font-medium text-[#333333]">Can I pay via M-Pesa?</summary><p class="mt-1">Yes, M-Pesa and cash on delivery are both accepted — send your order on WhatsApp to arrange payment.</p></details>
-                </div>
-            </div>
-        </div>
-        <p class="text-center text-sm text-gray-400 mt-10 pt-6 border-t border-[#F8D7E6]">&copy; 2026 Bella Wigs. All rights reserved.</p>
-    </footer>
-
-    <div id="wigfinder-overlay" class="hidden fixed inset-0 bg-black/40 z-40 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-8">
-            <div class="flex justify-between items-center mb-2">
-                <h3 class="font-display text-2xl">AI Wig Finder</h3>
-                <button onclick="closeWigFinder()" class="text-gray-400 text-2xl leading-none">&times;</button>
-            </div>
-            <p class="text-gray-500 mb-6">What look do you want?</p>
-            <div class="grid grid-cols-2 gap-3">
-                <button onclick="selectOccasion('Office')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Office</button>
-                <button onclick="selectOccasion('Wedding')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Wedding</button>
-                <button onclick="selectOccasion('Everyday')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Everyday</button>
-                <button onclick="selectOccasion('Church')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Church</button>
-                <button onclick="selectOccasion('Cancer Treatment')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Cancer Treatment</button>
-                <button onclick="selectOccasion('Fashion')" class="border border-[#F8D7E6] rounded-xl py-4 font-medium hover:bg-[#F8D7E6] transition">Fashion</button>
-            </div>
-        </div>
+    <div class="flex items-center gap-2">
+      <a href="https://wa.me/254748077609" target="_blank" class="btn btn-whatsapp btn-sm hidden sm:inline-flex">Chat with Bella</a>
+      <button onclick="openWigFinder()" class="btn btn-accent btn-sm hidden sm:inline-flex">Wig Finder</button>
+      <button id="cart-btn" class="relative w-11 h-11 rounded-full flex items-center justify-center" style="background: var(--charcoal); color: var(--ivory);">
+        🛍️
+        <span id="cart-count" class="hidden absolute -top-1 -right-1 w-5 h-5 rounded-full text-xs flex items-center justify-center" style="background: var(--champagne); color: #fff;">0</span>
+      </button>
     </div>
+  </div>
+</header>
 
-    <div id="cart-overlay" class="hidden fixed inset-0 bg-black/30 z-20"></div>
-    <aside id="cart-drawer" class="hidden fixed top-0 right-0 h-full w-96 bg-white z-30 shadow-2xl flex flex-col">
-        <div class="flex items-center justify-between p-5 border-b border-[#F8D7E6]"><h3 class="font-display text-xl">Your Cart</h3><button id="cart-close" class="text-2xl text-gray-400">&times;</button></div>
-        <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
-        <div class="p-5 border-t border-[#F8D7E6]"><div class="flex justify-between mb-4 font-semibold"><span>Subtotal</span><span id="cart-subtotal">KES 0</span></div><button id="checkout-btn" class="w-full bg-[#333333] text-white py-3 rounded-full font-medium hover:bg-[#C9A227] transition">Checkout on WhatsApp</button></div>
-    </aside>
+<!-- HERO -->
+<section class="relative overflow-hidden" style="height: 78vh; min-height: 520px;">
+  <img src="assets/images/straight-13x4-lace-front.png" alt="Bella Wigs model" class="absolute inset-0 w-full h-full object-cover">
+  <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(43,40,38,.35) 0%, rgba(43,40,38,.15) 45%, rgba(43,40,38,.55) 100%);"></div>
+  <div class="relative h-full flex flex-col items-center justify-center text-center px-6">
+    <p class="text-xs tracking-[.25em] uppercase mb-4" style="color: var(--champagne-light);">Bella Wigs</p>
+    <h1 class="font-display text-white mb-4" style="font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1;">Luxury Human Hair<br>for Every Queen</h1>
+    <p class="text-white/85 mb-8 max-w-md">Premium human hair wigs, carefully selected for your signature look.</p>
+    <div class="flex flex-wrap gap-3 justify-center mb-10">
+      <a href="#shop" class="btn btn-accent">Shop the Collection</a>
+      <button onclick="openWigFinder()" class="btn btn-secondary" style="background: rgba(255,255,255,.9); border-color: transparent;">Find My Wig</button>
+    </div>
+    <div class="trust-bar" style="color: rgba(255,255,255,.85);">
+      <span>100% Human Hair</span><span>·</span><span>M-Pesa Accepted</span><span>·</span><span>Nationwide Delivery</span><span>·</span><span>Ruiru Store</span>
+    </div>
+  </div>
+</section>
 
-    <a href="https://wa.me/254748077609?text=Hi!%20I%27d%20like%20to%20send%20a%20selfie%20to%20get%20a%20wig%20recommendation" target="_blank"
-       class="fixed bottom-6 right-6 z-50 bg-[#25D366] w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
-       title="Send us a selfie for a wig recommendation">
-        <svg viewBox="0 0 32 32" width="28" height="28" fill="white"><path d="M16.001 2.667C8.637 2.667 2.667 8.637 2.667 16c0 2.462.664 4.77 1.822 6.755L2.667 29.333l6.756-1.774A13.29 13.29 0 0 0 16 29.333c7.364 0 13.333-5.969 13.333-13.333S23.365 2.667 16.001 2.667zm7.75 18.86c-.323.905-1.6 1.657-2.616 1.876-.696.148-1.605.266-4.667-1.001-3.917-1.623-6.437-5.598-6.634-5.858-.19-.26-1.596-2.125-1.596-4.055 0-1.93.995-2.877 1.35-3.271.322-.358.751-.451 1.001-.451.25 0 .5.003.719.014.23.011.539-.087.843.643.323.777 1.098 2.681 1.194 2.876.096.195.16.423.032.683-.128.26-.192.423-.383.65-.192.228-.403.508-.575.683-.192.195-.392.406-.168.797.223.39.994 1.64 2.135 2.657 1.468 1.31 2.706 1.717 3.096 1.911.39.195.618.163.847-.098.229-.26.978-1.14 1.238-1.532.26-.39.52-.325.878-.195.359.13 2.269 1.07 2.658 1.265.39.195.65.293.746.455.096.163.096.943-.227 1.849z"/></svg>
-    </a>
+<!-- SHOWROOM -->
+<section class="section">
+  <div class="container-lux text-center mb-10 fade-up">
+    <p class="section-eyebrow">The Bella Collection</p>
+    <h2 class="section-title">Discover the Styles That Define Your Look</h2>
+  </div>
+  <div class="hidden md:block w-full" style="height: 480px;">
+    <div id="showroom-panels" class="flex h-full w-full"></div>
+  </div>
+  <div class="md:hidden w-full">
+    <div id="showroom-scroll" class="flex overflow-x-auto no-scrollbar"></div>
+    <div id="showroom-dots" class="flex justify-center gap-2 mt-3"></div>
+  </div>
+</section>
 
-    <script src="js/products.js"></script>
-    <script src="js/main.js"></script>
-  <script src="js/showroom.js"></script>
+<!-- SHOP -->
+<section id="shop" class="section" style="padding-top: 0;">
+  <div class="container-lux mb-8 fade-up">
+    <p class="section-eyebrow">Shop the Collection</p>
+    <h2 class="section-title">Curated Human Hair Styles for Every Occasion</h2>
+  </div>
+
+  <div class="container-lux mb-8">
+    <div class="flex flex-col gap-4">
+      <div id="category-row" class="flex gap-2 overflow-x-auto no-scrollbar"></div>
+      <div class="flex flex-col md:flex-row gap-3 md:items-center">
+        <input id="search-input" type="text" placeholder="Search wigs..." class="filter-input flex-1">
+        <select id="price-filter" class="filter-input">
+          <option value="all">Any price</option>
+          <option value="7000">Under KES 7,000</option>
+          <option value="9000">Under KES 9,000</option>
+          <option value="11000">Under KES 11,000</option>
+        </select>
+        <select id="length-filter" class="filter-input">
+          <option value="all">Any length</option>
+          <option value="short">Short (≤12")</option>
+          <option value="mid">Mid (14–18")</option>
+          <option value="long">Long (20"+)</option>
+        </select>
+        <button id="filter-clear-btn" class="text-sm underline whitespace-nowrap" style="color: var(--champagne);">Clear filters</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-lux">
+    <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    <div id="filter-empty-state" class="hidden text-center py-16" style="color: var(--text-muted);">
+      No wigs match those filters. <button onclick="document.getElementById('filter-clear-btn').click()" class="underline" style="color: var(--champagne);">Clear filters</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BELLA -->
+<section id="why-bella" class="section" style="background: var(--blush);">
+  <div class="container-lux">
+    <div class="text-center mb-10 fade-up">
+      <p class="section-eyebrow">Why Bella</p>
+      <h2 class="section-title">Six Reasons Women Trust Bella Wigs</h2>
+    </div>
+    <div class="trust-grid fade-up">
+      <div class="trust-item"><h4>100% Human Hair</h4><p>Carefully selected premium hair, checked for quality.</p></div>
+      <div class="trust-item"><h4>Personal Guidance</h4><p>Help choosing the right length, density and texture.</p></div>
+      <div class="trust-item"><h4>Nationwide Delivery</h4><p>Order from anywhere in Kenya.</p></div>
+      <div class="trust-item"><h4>Physical Store</h4><p>Visit Bella Wigs in Ruiru and see it in person.</p></div>
+      <div class="trust-item"><h4>M-Pesa Accepted</h4><p>Convenient, familiar Kenyan payment.</p></div>
+      <div class="trust-item"><h4>Book a Fitting</h4><p>Come try your look before you buy.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="container-lux">
+    <div class="text-center mb-10 fade-up">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-title">Simple, From Discovery to Delivery</h2>
+    </div>
+    <div class="step-grid fade-up">
+      <div><p class="step-num">01</p><h4 class="font-display text-lg mb-1">Discover</h4><p style="color: var(--text-muted);">Browse the collection or use the Wig Finder.</p></div>
+      <div><p class="step-num">02</p><h4 class="font-display text-lg mb-1">Choose</h4><p style="color: var(--text-muted);">Pick your length, density and texture.</p></div>
+      <div><p class="step-num">03</p><h4 class="font-display text-lg mb-1">Order</h4><p style="color: var(--text-muted);">Chat on WhatsApp or add to your bag.</p></div>
+      <div><p class="step-num">04</p><h4 class="font-display text-lg mb-1">Receive</h4><p style="color: var(--text-muted);">Nationwide delivery or Ruiru pickup.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A FITTING -->
+<section class="section" style="background: var(--charcoal); color: var(--ivory);">
+  <div class="container-lux text-center fade-up">
+    <p class="section-eyebrow">Book a Fitting</p>
+    <h2 class="font-display mb-3" style="font-size: clamp(1.6rem, 3vw, 2.2rem);">Try It. Love It. Make It Yours.</h2>
+    <p class="mb-6" style="color: rgba(255,255,255,.75);">Book a private wig fitting at our Ruiru store.</p>
+    <a href="https://wa.me/254748077609?text=Hi%20Bella%20Wigs%2C%20I%27d%20like%20to%20book%20a%20fitting." target="_blank" class="btn btn-accent">Book a Fitting</a>
+  </div>
+</section>
+
+<!-- VISIT / LOCATION -->
+<section id="visit" class="section">
+  <div class="container-lux">
+    <div class="text-center mb-8 fade-up">
+      <p class="section-eyebrow">Visit Bella Wigs</p>
+      <h2 class="section-title">The Stage After Rainbow, Ruiru</h2>
+    </div>
+    <div class="location-card fade-up">
+      <p class="text-xs tracking-widest mb-2" style="color: var(--champagne);">VISIT BELLA WIGS</p>
+      <p class="font-display text-xl mb-1">The Stage after Rainbow</p>
+      <p class="text-sm mb-6" style="color: rgba(255,255,255,.7);">Ruiru, Thika Road</p>
+      <a href="https://maps.app.goo.gl/YOUR_REAL_LINK_HERE" target="_blank" class="btn btn-accent">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container-lux grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div>
+      <p class="brand-mark text-lg mb-2">Bella <span class="accent">Wigs</span></p>
+      <p class="text-sm" style="color: var(--text-muted);">Luxury Hair. Your Signature Look.</p>
+      <p class="text-xs mt-3" style="color: var(--text-muted);">4.9 ★★★★★ · 200+ Reviews</p>
+    </div>
+    <div>
+      <p class="footer-heading">Shop</p>
+      <a href="#" class="footer-link">New Arrivals</a>
+      <a href="#" class="footer-link">Best Sellers</a>
+      <a href="#" class="footer-link">Straight</a>
+      <a href="#" class="footer-link">Water Wave</a>
+      <a href="#" class="footer-link">Bob &amp; Pixie</a>
+      <a href="#" class="footer-link">Afro</a>
+    </div>
+    <div>
+      <p class="footer-heading">Help</p>
+      <a href="#" onclick="openWigFinder(); return false;" class="footer-link">Wig Finder</a>
+      <a href="#" class="footer-link">Size Guide</a>
+      <a href="#" class="footer-link">Delivery</a>
+      <a href="#" class="footer-link">FAQ</a>
+    </div>
+    <div>
+      <p class="footer-heading">Visit</p>
+      <p class="footer-link">The Stage after Rainbow, Ruiru</p>
+      <a href="https://wa.me/254748077609" class="footer-link">WhatsApp</a>
+      <a href="tel:+254748077609" class="footer-link">+254 748 077 609</a>
+      <a href="mailto:hello@bellawigs.co.ke" class="footer-link">hello@bellawigs.co.ke</a>
+    </div>
+  </div>
+  <div class="container-lux mt-8 pt-6 text-center text-xs" style="border-top: 1px solid var(--border); color: var(--text-muted);">
+    © 2026 Bella Wigs. All rights reserved.
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div id="cart-overlay" class="hidden fixed inset-0 bg-black/40 z-40"></div>
+<div id="cart-drawer" class="hidden fixed top-0 right-0 h-full w-full max-w-sm bg-white z-50 p-6 overflow-y-auto">
+  <div class="flex justify-between items-center mb-6">
+    <p class="font-display text-xl">Your Bella Bag</p>
+    <button id="cart-close" class="text-2xl leading-none">&times;</button>
+  </div>
+  <div id="cart-items" class="flex flex-col gap-4 mb-6"></div>
+  <div class="flex justify-between items-center mb-4 font-semibold">
+    <span>Subtotal</span>
+    <span id="cart-subtotal">KES 0</span>
+  </div>
+  <button id="checkout-btn" class="btn btn-primary w-full">Checkout on WhatsApp</button>
+</div>
+
+<!-- WIG FINDER -->
+<div id="wigfinder-overlay" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
+    <button onclick="closeWigFinder()" class="absolute top-4 right-4 text-2xl leading-none">&times;</button>
+    <p class="section-eyebrow">AI Wig Finder</p>
+    <h3 class="font-display text-xl mb-4">What's the occasion?</h3>
+    <div class="flex flex-col gap-2">
+      <button onclick="selectOccasion('Office')" class="filter-chip text-left">Office</button>
+      <button onclick="selectOccasion('Wedding')" class="filter-chip text-left">Wedding</button>
+      <button onclick="selectOccasion('Everyday')" class="filter-chip text-left">Everyday</button>
+      <button onclick="selectOccasion('Church')" class="filter-chip text-left">Church</button>
+      <button onclick="selectOccasion('Fashion')" class="filter-chip text-left">Fashion</button>
+      <button onclick="selectOccasion('Cancer Treatment')" class="filter-chip text-left">Cancer Treatment</button>
+    </div>
+    <p id="wigfinder-note" class="hidden text-sm mt-4" style="color: var(--text-muted);"></p>
+  </div>
+</div>
+
+<a href="https://wa.me/254748077609" target="_blank" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg" style="background:#25D366;">💬</a>
+
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script src="js/showroom.js"></script>
 </body>
 </html>
-
-
-
-

@@ -15,18 +15,14 @@ function renderCategoryChips() {
   const row = document.getElementById('category-row');
   const categories = ['all', ...new Set(PRODUCTS.map(p => p.category))];
   row.innerHTML = categories.map(cat => `
-    <button data-category="${cat}" class="category-chip px-5 py-2 rounded-full text-sm font-medium ${cat === 'all' ? 'bg-[#333333] text-white' : 'bg-[#F8D7E6] text-[#333333]'} hover:bg-[#C9A227] hover:text-white transition flex-shrink-0">${cat === 'all' ? 'All' : cat}</button>
+    <button data-category="${cat}" class="filter-chip flex-shrink-0 ${cat === 'all' ? 'is-active' : ''}">${cat === 'all' ? 'All' : cat}</button>
   `).join('');
 
-  row.querySelectorAll('.category-chip').forEach(btn => {
+  row.querySelectorAll('.filter-chip').forEach(btn => {
     btn.addEventListener('click', () => {
       activeCategory = btn.dataset.category;
-      row.querySelectorAll('.category-chip').forEach(b => {
-        b.classList.remove('bg-[#333333]', 'text-white');
-        b.classList.add('bg-[#F8D7E6]', 'text-[#333333]');
-      });
-      btn.classList.add('bg-[#333333]', 'text-white');
-      btn.classList.remove('bg-[#F8D7E6]', 'text-[#333333]');
+      row.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
       renderProducts();
     });
   });
@@ -53,6 +49,35 @@ function getFilteredProducts() {
   });
 }
 
+function productCardHtml(p) {
+  const waMessage = encodeURIComponent(`Hi Bella Wigs, I'm interested in the ${p.name} — KES ${p.price.toLocaleString()}. Is it available?`);
+  const badgeHtml = p.badge ? `<span class="badge badge-${p.badge}">${BADGE_LABELS[p.badge]}</span>` : '';
+  return `
+    <div class="product-card fade-up">
+      ${badgeHtml}
+      <div class="product-card-image">
+        <img src="${IMG_PATH}${p.image}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-card-body">
+        <p class="product-card-cat">${p.category}</p>
+        <p class="product-card-name">${p.name}</p>
+        <div class="product-card-chips">
+          <span class="product-card-chip">${p.hair_type}</span>
+          <span class="product-card-chip">${p.density} Density</span>
+          <span class="product-card-chip">${p.length}"</span>
+        </div>
+        <div class="product-card-footer">
+          <div class="product-card-price-row">
+            <span class="product-card-price">KES ${p.price.toLocaleString()}</span>
+            <button data-id="${p.id}" class="add-to-cart-btn btn btn-primary btn-sm">Add to Bag</button>
+          </div>
+          <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}" target="_blank" class="btn btn-whatsapp btn-sm">Ask on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderProducts() {
   const filtered = getFilteredProducts();
   const grid = document.getElementById('product-grid');
@@ -65,36 +90,12 @@ function renderProducts() {
   }
   if (emptyState) emptyState.classList.add('hidden');
 
-  grid.innerHTML = filtered.map(p => {
-    const waMessage = encodeURIComponent(`Hi Bella Wigs, I'm interested in the ${p.name} — KES ${p.price.toLocaleString()}. Is it available?`);
-    return `
-      <div class="bg-white rounded-2xl overflow-hidden shadow hover:shadow-lg transition relative">
-        ${p.badge ? `<span class="absolute top-3 left-3 z-10 bg-[#C9A227] text-white text-xs font-semibold px-3 py-1 rounded-full">${p.badge}</span>` : ''}
-        <div class="aspect-square bg-[#FFF8FA] flex items-center justify-center">
-          <img src="${IMG_PATH}${p.image}" class="w-full h-full object-cover hover:scale-105 transition" alt="${p.name}">
-        </div>
-        <div class="p-5">
-          <p class="text-xs uppercase text-[#C9A227] mb-1">${p.category}</p>
-          <p class="font-display text-lg">${p.name}</p>
-          <div class="flex flex-wrap gap-1 my-2">
-            <span class="text-xs bg-[#FFF8FA] border border-[#F8D7E6] text-gray-600 px-2 py-1 rounded-full">${p.hair_type}</span>
-            <span class="text-xs bg-[#FFF8FA] border border-[#F8D7E6] text-gray-600 px-2 py-1 rounded-full">${p.density} Density</span>
-            <span class="text-xs bg-[#FFF8FA] border border-[#F8D7E6] text-gray-600 px-2 py-1 rounded-full">${p.lace}</span>
-            <span class="text-xs bg-[#FFF8FA] border border-[#F8D7E6] text-gray-600 px-2 py-1 rounded-full">${p.length}"</span>
-          </div>
-          <div class="flex justify-between items-center mb-3">
-            <span class="font-semibold">KES ${p.price.toLocaleString()}</span>
-            <button data-id="${p.id}" class="add-to-cart-btn bg-[#333333] text-white text-sm px-4 py-2 rounded-full hover:bg-[#C9A227] transition">Add to Cart</button>
-          </div>
-          <a href="https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}" target="_blank" class="block text-center text-sm border border-[#25D366] text-[#128C4A] py-2 rounded-full font-medium hover:bg-[#25D366] hover:text-white transition">💬 Ask on WhatsApp</a>
-        </div>
-      </div>
-    `;
-  }).join('');
+  grid.innerHTML = filtered.map(productCardHtml).join('');
 
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', () => addToCart(btn.dataset.id, btn));
   });
+  observeFadeUps();
 }
 
 function addToCart(id, btn) {
@@ -125,9 +126,9 @@ function renderCart() {
   countEl.textContent = count;
 
   document.getElementById('cart-items').innerHTML = cart.length === 0
-    ? '<p class="text-gray-400 text-sm">Your cart is empty.</p>'
+    ? '<p class="text-gray-400 text-sm">Your bag is empty.</p>'
     : cart.map(i => `
-      <div class="flex justify-between text-sm border-b border-[#F8D7E6] pb-3">
+      <div class="flex justify-between text-sm border-b pb-3" style="border-color: var(--border)">
         <div>
           <p class="font-medium">${i.name}</p>
           <p class="text-gray-400">Qty ${i.qty} &middot; <button data-id="${i.id}" class="remove-btn underline">Remove</button></p>
@@ -171,12 +172,8 @@ function closeWigFinder() { document.getElementById('wigfinder-overlay').classLi
 function selectOccasion(occasion) {
   const category = OCCASION_MAP[occasion];
   activeCategory = category;
-  document.querySelectorAll('#category-row button').forEach(b => {
-    const match = b.dataset.category === category;
-    b.classList.toggle('bg-[#333333]', match);
-    b.classList.toggle('text-white', match);
-    b.classList.toggle('bg-[#F8D7E6]', !match);
-    b.classList.toggle('text-[#333333]', !match);
+  document.querySelectorAll('#category-row .filter-chip').forEach(b => {
+    b.classList.toggle('is-active', b.dataset.category === category);
   });
   const note = document.getElementById('wigfinder-note');
   if (occasion === 'Cancer Treatment') {
@@ -196,44 +193,49 @@ function initFilterBar() {
   const lengthSelect = document.getElementById('length-filter');
   const clearBtn = document.getElementById('filter-clear-btn');
 
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchTerm = e.target.value;
-      renderProducts();
-    });
-  }
-  if (priceSelect) {
-    priceSelect.addEventListener('change', (e) => {
-      priceMax = e.target.value === 'all' ? Infinity : Number(e.target.value);
-      renderProducts();
-    });
-  }
-  if (lengthSelect) {
-    lengthSelect.addEventListener('change', (e) => {
-      lengthFilter = e.target.value;
-      renderProducts();
-    });
-  }
+  if (searchInput) searchInput.addEventListener('input', (e) => { searchTerm = e.target.value; renderProducts(); });
+  if (priceSelect) priceSelect.addEventListener('change', (e) => { priceMax = e.target.value === 'all' ? Infinity : Number(e.target.value); renderProducts(); });
+  if (lengthSelect) lengthSelect.addEventListener('change', (e) => { lengthFilter = e.target.value; renderProducts(); });
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       searchTerm = ''; priceMax = Infinity; lengthFilter = 'all'; activeCategory = 'all';
       if (searchInput) searchInput.value = '';
       if (priceSelect) priceSelect.value = 'all';
       if (lengthSelect) lengthSelect.value = 'all';
-      document.querySelectorAll('#category-row button').forEach(b => {
-        const match = b.dataset.category === 'all';
-        b.classList.toggle('bg-[#333333]', match);
-        b.classList.toggle('text-white', match);
-        b.classList.toggle('bg-[#F8D7E6]', !match);
-        b.classList.toggle('text-[#333333]', !match);
-      });
+      document.querySelectorAll('#category-row .filter-chip').forEach(b => b.classList.toggle('is-active', b.dataset.category === 'all'));
       renderProducts();
     });
   }
+}
+
+function initStickyHeader() {
+  const header = document.getElementById('site-header');
+  if (!header) return;
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 12);
+  }, { passive: true });
+}
+
+function observeFadeUps() {
+  const items = document.querySelectorAll('.fade-up:not(.is-visible)');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(el => io.observe(el));
 }
 
 renderCategoryChips();
 renderProducts();
 renderCart();
 initFilterBar();
-
+initStickyHeader();
+observeFadeUps();
