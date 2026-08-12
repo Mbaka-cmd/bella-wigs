@@ -5,7 +5,7 @@
     subtitle: "Premium Beauty & Skin Care Essentials",
     cta: "SHOP BEAUTY",
     category: "Beauty",
-    image: "new-arrivals/cosrx-6-peptide-skin-booster-serum-150ml-45.png"
+    image: "cosrx-6-peptide-skin-booster.png"
   },
   {
     num: "02",
@@ -13,7 +13,7 @@
     subtitle: "Professional Styling Tools For Your Perfect Look",
     cta: "SHOP TOOLS",
     category: "Accessories",
-    image: "new-arrivals/wig-tools-flat-iron.png"
+    image: "professional-hair-styling-flat-iron.png"
   },
   {
     num: "03",
@@ -21,7 +21,7 @@
     subtitle: "Volume. Texture. Confidence.",
     cta: "SHOP CURLY WIGS",
     category: "Curly Wigs",
-    image: "new-arrivals/curls_style.png"
+    image: "curls-style.png"
   },
   {
     num: "04",
@@ -29,7 +29,7 @@
     subtitle: "Professional Lace Melting & Wig Care Essentials",
     cta: "SHOP WIG CARE",
     category: "Accessories",
-    image: "new-arrivals/dolahair-lace-melting-holding-spray-glueless-hair-adhesive-48.png"
+    image: "dolahair-lace-melting-spray.png"
   }
 ];
 
@@ -42,7 +42,7 @@ function showroomShop(category) {
   document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const SHOWROOM_IMG_PATH = "assets/images/";
+const SHOWROOM_IMG_PATH = "assets/images/new-arrivals/";
 
 function panelBg(s) {
   return s.image
@@ -120,3 +120,6 @@ function renderShowroomMobile() {
 
 renderShowroomDesktop();
 renderShowroomMobile();
+
+
+
