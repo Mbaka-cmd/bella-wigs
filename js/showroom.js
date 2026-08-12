@@ -5,7 +5,7 @@
     subtitle: "Premium Beauty & Skin Care Essentials",
     cta: "SHOP BEAUTY",
     category: "Beauty",
-    image: "new-arrivals/COSRX The 6 Peptide Skin Booster Serum 150ml 6 Peptide Complex Brightening Face Serum Multiple Skin.png"
+    image: "new-arrivals/cosrx-6-peptide-skin-booster-serum-150ml-45.png"
   },
   {
     num: "02",
@@ -29,7 +29,7 @@
     subtitle: "Professional Lace Melting & Wig Care Essentials",
     cta: "SHOP WIG CARE",
     category: "Accessories",
-    image: "new-arrivals/Dolahair Lace Melting and Holding Spray Glue-Less Hair Adhesive for Wigs Lace Bond Adhes.png"
+    image: "new-arrivals/dolahair-lace-melting-holding-spray-glueless-hair-adhesive-48.png"
   }
 ];
 
@@ -120,13 +120,3 @@ function renderShowroomMobile() {
 
 renderShowroomDesktop();
 renderShowroomMobile();
-
-
-
-
-
-
-
-
-
-
